@@ -1,0 +1,134 @@
+/* File: client/src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 224 71.4% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71.4% 4.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71.4% 4.1%;
+    --primary: 220 9.1% 42.9%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220 9.1% 42.9%;
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 43.1%;
+    --accent: 220 14.3% 95.9%;
+    --accent-foreground: 220 9.1% 42.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 224 71.4% 4.1%;
+    --radius: 0.5rem;
+
+    /* Mind Map Colors - Light Theme */
+    --mindmap-color-0: 215 50% 55%; /* Muted Blue */
+    --mindmap-color-1: 170 45% 45%; /* Muted Teal */
+    --mindmap-color-2: 145 50% 50%; /* Muted Green */
+    --mindmap-color-3: 45 70% 55%;  /* Muted Yellow */
+    --mindmap-color-4: 25 75% 60%;  /* Muted Orange */
+    --mindmap-link: 220 13% 30%;
+  }
+
+  .dark {
+    /* --- Dark Gray Theme --- */
+    --background: 220 13% 18%; /* Dark gray background */
+    --foreground: 210 20% 98%;
+    --card: 220 13% 22%; /* Slightly lighter card background */
+    --card-foreground: 210 20% 98%;
+    --popover: 220 13% 18%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 210 20% 98%;
+    --primary-foreground: 220 9.1% 42.9%;
+    --secondary: 220 13% 28%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 220 13% 28%;
+    --muted-foreground: 210 20% 90%;
+    --accent: 220 13% 28%;
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 220 13% 28%;
+    --input: 220 13% 28%;
+    --ring: 210 20% 98%;
+
+    /* Mind Map Colors - Dark Theme */
+    --mindmap-color-0: 215 50% 55%; /* Muted Blue */
+    --mindmap-color-1: 170 45% 45%; /* Muted Teal */
+    --mindmap-color-2: 145 50% 50%; /* Muted Green */
+    --mindmap-color-3: 45 70% 55%;  /* Muted Yellow */
+    --mindmap-color-4: 25 75% 60%;  /* Muted Orange */
+    --mindmap-link: 220 13% 15%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    overscroll-behavior: none;
+  }
+
+  /* --- Global Scrollbar Styling --- */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+
+  html::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  html::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  html::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+  }
+
+  html::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/50;
+  }
+}
+
+@layer components {
+  /* Mind Map Custom Styles */
+  .mindmap-node {
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+  }
+  
+  .mindmap-node-rect {
+    @apply stroke-black/10 dark:stroke-white/10;
+    stroke-width: 1px;
+    transition: fill 0.3s;
+  }
+  
+  .mindmap-node-rect.level-0 { @apply fill-[hsl(var(--mindmap-color-0))]; }
+  .mindmap-node-rect.level-1 { @apply fill-[hsl(var(--mindmap-color-1))]; }
+  .mindmap-node-rect.level-2 { @apply fill-[hsl(var(--mindmap-color-2))]; }
+  .mindmap-node-rect.level-3 { @apply fill-[hsl(var(--mindmap-color-3))]; }
+  .mindmap-node-rect.level-4 { @apply fill-[hsl(var(--mindmap-color-4))]; }
+
+  .mindmap-node-text-level-0 { @apply text-white; }
+  .mindmap-node-text-level-1 { @apply text-white; }
+  .mindmap-node-text-level-2 { @apply text-white; }
+  .mindmap-node-text-level-3 { @apply text-white; }
+  .mindmap-node-text-level-4 { @apply text-white; }
+
+  .mindmap-link {
+    transition: d 0.4s ease-out, opacity 0.4s ease-out;
+  }
+  
+  .mindmap-indicator-arrow {
+    @apply transition-transform duration-300;
+  }
+}

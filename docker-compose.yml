@@ -1,0 +1,30 @@
+services:
+  docparser:
+    build: .
+    container_name: docparser
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - MONGO_ENDPOINT=${MONGO_ENDPOINT}
+      - QDRANT_ENDPOINT=${QDRANT_ENDPOINT}
+    volumes:
+      - ./app:/app
+    depends_on:
+      - mongodb
+      - qdrant
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    volumes:
+      - ./mongodb:/data
+    restart: unless-stopped
+
+  qdrant:
+    image: qdrant/qdrant
+    container_name: qdrant
+    volumes:
+      - ./qdrant:/qdrant/storage
+    restart: unless-stopped
